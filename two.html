@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Problem 2</h2>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+    function myFunction() {
+        var result;
+        var line;
+        var n;
+        var noOfLines = prompt("Enter the number of inputs??");
+        while (isNaN(noOfLines)) {
+            alert("You seem to have entered a wrong input. Please enter a number");
+            noOfLines = prompt("Enter the number of inputs.");
+        }
+
+        for (var i = 0; i < noOfLines; i++) {
+            line = prompt("Enter the line");
+            n = prompt("Enter the deciding number");
+            line.XyloHack(n);
+        }
+    }
+
+
+    String.prototype.XyloHack = function (n) {
+        if (n % 2 === 0) {
+            result = this.toUpperCase();
+        } else {
+            result = this.toLowerCase();
+        }
+        alert(result);
+        return result;
+    }
+
+</script>
+
+</body>
+</html>

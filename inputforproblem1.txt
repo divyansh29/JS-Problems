@@ -1,0 +1,17 @@
+3
+abc.txt
+He$$llo hi
+
+
+
+pqr.txt
+Java$$Script
+Java
+
+
+
+xyz.txt
+Boolean$$
+
+
+

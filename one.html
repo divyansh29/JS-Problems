@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Problem 1</h2>
+
+<input type="file" name="file" id="file">
+
+<script>
+    document.getElementById('file').onchange = function () {
+
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (progressEvent) {
+            var text = reader.result;
+            // Entire file
+            //console.log(this.result);
+
+            var noOfLines = 0;
+            var fileName = "";
+            var extension = "";
+            var content = "";
+            var firstLine = text.split('\n').shift(); // first line
+            noOfLines = noOfLines + 1;
+            console.log("firstLine: " + firstLine);
+
+            for (var i = 0; i < firstLine; i++) {
+                var newLineCount = 0;
+
+                var lines = this.result.split('\n');
+                for (noOfLines; noOfLines < lines.length; noOfLines++) {
+                    console.log("line: " + lines[noOfLines]);
+
+                    if (lines[noOfLines].indexOf(".") != -1) {
+                        extension = lines[noOfLines].substr(lines[noOfLines].indexOf("."));
+                        var tempFileName = lines[noOfLines].substr(0, lines[noOfLines].indexOf("."));
+                        fileName += tempFileName + " ";
+
+                    } else {
+                        if (!(lines[noOfLines].length <= 1)) {
+                            var tempCont = lines[noOfLines].replace(new RegExp("\\$", "g"), '');
+                            content += tempCont;
+                            content = content.trim();
+                            content += "\n";
+
+                            newLineCount = 0;
+
+                        } else {
+                            if (newLineCount != 3) {
+                                newLineCount++;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+            }
+
+            fileName = fileName.trim();
+            fileName = camelize(fileName);
+            fileName += extension;
+            console.log("last filename" + fileName)
+            alert(fileName +'\n'+ content);
+
+        }
+        reader.readAsText(file);
+
+    }
+
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+            return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+        }).replace(/\s+/g, '');
+    }
+
+
+</script>
+
+</body>
+</html>
